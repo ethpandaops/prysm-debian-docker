@@ -50,8 +50,8 @@ jobs:
       -
         name: Pull latest
         run: >
-          docker pull gcr.io/prysmaticlabs/prysm/validator:latest;
-          docker pull gcr.io/prysmaticlabs/prysm/beacon:latest;
+          docker pull gcr.io/prysmaticlabs/prysm/validator:stable;
+          docker pull gcr.io/prysmaticlabs/prysm/beacon:stable;
       -
         name: Build and push
         uses: docker/build-push-action@v2
