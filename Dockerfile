@@ -1,5 +1,5 @@
-FROM gcr.io/prysmaticlabs/prysm/beacon-chain:stable as prysm-beacon-chain
-FROM gcr.io/prysmaticlabs/prysm/validator:stable as prysm-validator
+FROM gcr.io/prysmaticlabs/prysm/beacon-chain:latest as prysm-beacon-chain
+FROM gcr.io/prysmaticlabs/prysm/validator:latest as prysm-validator
 
 FROM debian:11-slim
 
