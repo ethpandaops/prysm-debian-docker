@@ -8,3 +8,4 @@ COPY --from=prysm-beacon-chain /app/cmd/beacon-chain/beacon-chain /app/cmd/beaco
 COPY --from=prysm-validator /app/cmd/validator/validator /app/cmd/validator/validator
 RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
 ENTRYPOINT [ "/app/cmd/beacon-chain/beacon-chain" ]
+
