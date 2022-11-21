@@ -58,4 +58,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args:
-            tag: ${{ inputs.upstream_tag }}
+            - tag=${{ inputs.upstream_tag }}
