@@ -14,7 +14,7 @@ on:
       upstream_beacon_image:
         description: Upstream beacon image to use
         required: true
-        default: gcr.io/prysmaticlabs/prysm/beacon
+        default: gcr.io/prysmaticlabs/prysm/beacon-chain
 jobs:
   docker:
     runs-on: ubuntu-latest
