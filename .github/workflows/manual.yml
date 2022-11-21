@@ -39,7 +39,7 @@ jobs:
           images: |
             samcm/prysm-debian
           tags: |
-            type=raw,value=${{ inputs.upstream_tag }}
+            type=raw,value=${{ inputs.tag }}
             type=sha
       -
         name: Set up QEMU

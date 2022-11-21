@@ -1,6 +1,6 @@
-ARG beacon_tag=
+ARG beacon_tag=:latest
 ARG beacon=gcr.io/prysmaticlabs/prysm/beacon-chain
-ARG validator_tag=
+ARG validator_tag=:latest
 ARG validator=gcr.io/prysmaticlabs/prysm/validator
 
 FROM $beacon$beacon_tag as prysm-beacon-chain
