@@ -1,4 +1,4 @@
-name: ci
+name: manual
 
 on:
   workflow_dispatch:
@@ -23,14 +23,7 @@ jobs:
           images: |
             samcm/prysm-debian
           tags: |
-            # set latest tag for default branch
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=raw,value=${{ inputs.upstream_tag }}
             type=sha
       -
         name: Set up QEMU
@@ -47,8 +40,8 @@ jobs:
       -
         name: Pull latest
         run: >
-          docker pull gcr.io/prysmaticlabs/prysm/validator:latest;
-          docker pull gcr.io/prysmaticlabs/prysm/beacon-chain:latest;
+          docker pull gcr.io/prysmaticlabs/prysm/validator:${{ inputs.upstream_tag }};
+          docker pull gcr.io/prysmaticlabs/prysm/beacon-chain:${{ inputs.upstream_tag }};
       -
         name: Build and push
         uses: docker/build-push-action@v2
