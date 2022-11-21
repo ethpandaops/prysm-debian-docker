@@ -1,15 +1,12 @@
 name: ci
 
 on:
-  push:
-    branches:
-      - 'master'
-    tags:
-      - 'v*.*.*'
-  schedule:
-    # Runs every day at 8
-    - cron: '0 8 * * *'
-
+  workflow_dispatch:
+    inputs:
+      upstream_tag:
+        description: 'Upstream tag to build'
+        required: true
+        default: 'latest'
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -61,4 +58,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args:
-            tag: latest
+            tag: ${{ inputs.upstream_tag }}

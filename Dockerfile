@@ -1,5 +1,7 @@
-FROM gcr.io/prysmaticlabs/prysm/beacon-chain:latest as prysm-beacon-chain
-FROM gcr.io/prysmaticlabs/prysm/validator:latest as prysm-validator
+ARG tag=latest
+
+FROM gcr.io/prysmaticlabs/prysm/beacon-chain:$tag as prysm-beacon-chain
+FROM gcr.io/prysmaticlabs/prysm/validator:$tag as prysm-validator
 
 FROM debian:11-slim
 
