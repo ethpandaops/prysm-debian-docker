@@ -4,9 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       upstream_tag:
-        description: 'Upstream tag to build'
+        description: Upstream tag to build
         required: true
-        default: 'latest'
+        default: latest
+      upstream_validator_image:
+        description: Upstream validator image to use
+        required: true
+        default: gcr.io/prysmaticlabs/prysm/validator
+      upstream_beacon_image:
+        description: Upstream beacon image to use
+        required: true
+        default: gcr.io/prysmaticlabs/prysm/beacon
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -40,8 +48,8 @@ jobs:
       -
         name: Pull latest
         run: >
-          docker pull gcr.io/prysmaticlabs/prysm/validator:${{ inputs.upstream_tag }};
-          docker pull gcr.io/prysmaticlabs/prysm/beacon-chain:${{ inputs.upstream_tag }};
+          docker pull ${{ inputs.upstream_beacon_image }}:${{ inputs.upstream_tag }};
+          docker pull ${{ inputs.upstream_validator_image}}:${{ inputs.upstream_tag }};
       -
         name: Build and push
         uses: docker/build-push-action@v2
@@ -52,3 +60,5 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             tag=${{ inputs.upstream_tag }}
+            beacon=${{ inputs.upstream_beacon_image }}
+            validator=${{ inputs.upstream_validator_image }}
