@@ -1,9 +1,10 @@
-ARG tag=latest
+ARG beacon_tag=:latest
 ARG beacon=gcr.io/prysmaticlabs/prysm/beacon-chain
+ARG validator_tag=:latest
 ARG validator=gcr.io/prysmaticlabs/prysm/validator
 
-FROM $beacon$tag as prysm-beacon-chain
-FROM $validator$tag as prysm-validator
+FROM $beacon$beacon_tag as prysm-beacon-chain
+FROM $validator$validator_tag as prysm-validator
 
 FROM debian:11-slim
 

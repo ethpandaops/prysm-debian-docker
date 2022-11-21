@@ -3,8 +3,12 @@ name: manual
 on:
   workflow_dispatch:
     inputs:
-      upstream_tag:
-        description: Upstream tag to build
+      upstream_beacon_tag:
+        description: Upstream beacon image tag to extract binary from
+        required: true
+        default: :latest
+      upstream_validator_tag:
+        description: Upstream validator image tag to extra binary from
         required: true
         default: :latest
       upstream_validator_image:
@@ -63,6 +67,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            tag=${{ inputs.tag }}
+            beacon_tag=${{ inputs.tag }}
             beacon=${{ inputs.upstream_beacon_image }}
             validator=${{ inputs.upstream_validator_image }}
+            validator_tag=${{ inputs.tag }}
